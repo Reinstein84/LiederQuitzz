@@ -3,17 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Link</title>
+    <title>Redirect mit Verzögerung</title>
     <script>
+        // Funktion, um den Parameter "url" aus der URL zu extrahieren
+        function getQueryParameter(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Funktion für die Weiterleitung mit Verzögerung
         function delayedRedirect() {
-            setTimeout(() => {
-                window.location.href = "https://open.spotify.com/track/5ZrDlcxIDZyjOzHdYW1ydr";
-            }, 3000); // 3 Sekunden Verzögerung
+            const targetUrl = getQueryParameter("url"); // Ziel-URL aus dem Parameter
+            if (targetUrl) {
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 3000); // 3 Sekunden Verzögerung
+            } else {
+                document.getElementById("message").textContent = "Keine Ziel-URL gefunden.";
+            }
         }
     </script>
 </head>
 <body onload="delayedRedirect()">
     <h1>Bitte warten...</h1>
-    <p>Der Link wird in Kürze geöffnet.</p>
+    <p id="message">Die Seite wird in Kürze geladen.</p>
 </body>
 </html>
