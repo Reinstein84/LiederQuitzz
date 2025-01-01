@@ -15,6 +15,9 @@
         function delayedRedirect() {
             const targetUrl = getQueryParameter("url"); // Ziel-URL aus dem Parameter
             if (targetUrl) {
+                // Zeige die Ziel-URL auf der Seite an
+                document.getElementById("target-url").textContent = targetUrl;
+                
                 // Überprüfen, ob die Ziel-URL ein Spotify-Link ist
                 if (targetUrl.includes("open.spotify.com")) {
                     // Umwandlung in einen Spotify-App-Link
@@ -32,5 +35,6 @@
 <body onload="delayedRedirect()">
     <h1>Bitte warten...</h1>
     <p id="message">Die Seite wird in Kürze geladen.</p>
+    <p>Ziel-URL: <span id="target-url"></span></p>
 </body>
 </html>
