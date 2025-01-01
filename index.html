@@ -1,24 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirect mit Verzögerung</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            color: #333;
+            margin-top: 20%;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        #countdown {
+            font-weight: bold;
+            color: #ff5722;
+        }
+    </style>
     <script>
-        // Funktion, um den Parameter "url" aus der URL zu extrahieren
         function getQueryParameter(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
 
-        // Funktion für die Weiterleitung mit Verzögerung und Countdown
         function delayedRedirect() {
-            const targetUrl = getQueryParameter("url"); // Ziel-URL aus dem Parameter
+            const targetUrl = getQueryParameter("url");
             const countdownElement = document.getElementById("countdown");
-            let countdown = 3; // Sekunden bis zur Weiterleitung
+            let countdown = 3;
 
             if (targetUrl) {
-                // Update den Countdown alle Sekunde
                 const countdownInterval = setInterval(() => {
                     if (countdown > 0) {
                         countdownElement.textContent = countdown;
@@ -35,8 +48,7 @@
     </script>
 </head>
 <body onload="delayedRedirect()">
-    <h1>Dreh das Handy um Meiner!</h1>
-    <p id="message">Die App wird in Kürze aufgerufen. /n Funzt nur gut mit SpuckyFy Prämium ;)</p>
-    <p>Der Song wird in: <span id="countdown">3</span> Sekunden gaystartet!</p>
+    <h1>Dreh das Handy um, Meiner!</h1>
+    <p>Der Song wird in: <span id="countdown">3</span> Sekunden gestartet!</p>
 </body>
 </html>
