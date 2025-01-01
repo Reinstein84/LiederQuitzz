@@ -11,13 +11,23 @@
             return urlParams.get(param);
         }
 
-        // Funktion für die Weiterleitung mit Verzögerung
+        // Funktion für die Weiterleitung mit Verzögerung und Countdown
         function delayedRedirect() {
             const targetUrl = getQueryParameter("url"); // Ziel-URL aus dem Parameter
+            const countdownElement = document.getElementById("countdown");
+            let countdown = 3; // Sekunden bis zur Weiterleitung
+
             if (targetUrl) {
-                setTimeout(() => {
-                    window.location.href = targetUrl;
-                }, 3000); // 3 Sekunden Verzögerung
+                // Update den Countdown alle Sekunde
+                const countdownInterval = setInterval(() => {
+                    if (countdown > 0) {
+                        countdownElement.textContent = countdown;
+                        countdown--;
+                    } else {
+                        clearInterval(countdownInterval);
+                        window.location.href = targetUrl;
+                    }
+                }, 1000);
             } else {
                 document.getElementById("message").textContent = "Keine Ziel-URL gefunden.";
             }
@@ -28,5 +38,6 @@
     <h1>Bitte warten...</h1>
     <p id="message">Die Seite wird in Kürze geladen.</p>
     <p>Ziel-URL: <span id="targetUrl"></span></p>
+    <p>Weiterleitung in: <span id="countdown">3</span> Sekunden</p>
 </body>
 </html>
